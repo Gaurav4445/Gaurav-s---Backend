@@ -16,6 +16,5 @@ this.messsage=message
 
   }
 
-
 }
 export {ApiError}
