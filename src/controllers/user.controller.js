@@ -72,8 +72,10 @@ return res.status(200).cookie("accessToken",accessToken,options).cookie("refresh
 })
 
 
-const logoutUser= asyncHandler(async(req,res)=>{
-   User.findById=
-})
+const logoutUser = asyncHandler(async (req, res) => {
+  // your logout logic
+  res.status(200).json({ message: "User logged out successfully" });
+});
+
 
 export{loginUser,registerUser}
