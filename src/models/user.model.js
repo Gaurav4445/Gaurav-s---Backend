@@ -9,7 +9,7 @@ username:{
   unique:true,
   lowercase:true,
   trim:true,
-  index:true//Used for searching in database , this just optimises searching. Not eberything should be indexed.
+  index:true//Used for searching in database , this just optimises searching. Not everything should be indexed.
 },
 email:{
   type:String,
