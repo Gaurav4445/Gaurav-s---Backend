@@ -22,4 +22,5 @@ this.message=message
 }
 
 }
-export {ApiError}
+
+export default ApiError;
