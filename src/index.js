@@ -1,6 +1,11 @@
 import express from "express";
 import dotenv from "dotenv";
 import connectDB from "./db/index.js";
+import path from "path";
+import { fileURLToPath } from "url";
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 dotenv.config({ path: "./.env" });
 
@@ -12,16 +17,16 @@ const startServer = async () => {
     await connectDB();
     console.log("MongoDB connected");
 
-    // Import all routes
-    const userRouter = (await import("./routes/user.routes.js")).default;
-    const healthcheckRouter = (await import("./routes/healthcheck.routes.js")).default;
-    const videoRouter = (await import("./routes/video.routes.js")).default;
-    const tweetRouter = (await import("./routes/tweet.routes.js")).default;
-    const commentRouter = (await import("./routes/comment.routes.js")).default;
-    const likeRouter = (await import("./routes/like.routes.js")).default;
-    const playlistRouter = (await import("./routes/playlist.routes.js")).default;
-    const subscriptionRouter = (await import("./routes/subscription.routes.js")).default;
-    const dashboardRouter = (await import("./routes/dashboard.routes.js")).default;
+    // Import all routes with proper path resolution
+    const userRouter = (await import(path.join(__dirname, "./routes/user.routes.js"))).default;
+    const healthcheckRouter = (await import(path.join(__dirname, "./routes/healthcheck.routes.js"))).default;
+    const videoRouter = (await import(path.join(__dirname, "./routes/video.routes.js"))).default;
+    const tweetRouter = (await import(path.join(__dirname, "./routes/tweet.routes.js"))).default;
+    const commentRouter = (await import(path.join(__dirname, "./routes/comment.routes.js"))).default;
+    const likeRouter = (await import(path.join(__dirname, "./routes/like.routes.js"))).default;
+    const playlistRouter = (await import(path.join(__dirname, "./routes/playlist.routes.js"))).default;
+    const subscriptionRouter = (await import(path.join(__dirname, "./routes/subscription.routes.js"))).default;
+    const dashboardRouter = (await import(path.join(__dirname, "./routes/dashboard.routes.js"))).default;
 
     // Register all routes
     app.use("/api/v1/healthcheck", healthcheckRouter);
